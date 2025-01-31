@@ -2,7 +2,7 @@ use serde_derive::{Deserialize, Serialize};
 use serde_json::Value;
 use std::net::Ipv6Addr;
 
-#[derive(Deserialize, Serialize, Debug, Clone)]
+#[derive(Deserialize, Serialize, Debug, Default, Clone)]
 pub struct NodesJSON {
     pub version: u32,
     pub timestamp: String,
