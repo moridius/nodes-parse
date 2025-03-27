@@ -1,3 +1,4 @@
+use macaddr::MacAddr6;
 use serde_derive::{Deserialize, Serialize};
 use serde_json::Value;
 use std::net::Ipv6Addr;
@@ -104,7 +105,7 @@ pub struct Nodeinfo {
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct Network {
-    pub mac: Value, // TODO: implement
+    pub mac: MacAddr6,
     pub addresses: Vec<Ipv6Addr>,
     pub mesh: Value,  // TODO: implement
     pub mesh_interfaces: Value  // TODO: implement
