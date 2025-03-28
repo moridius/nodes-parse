@@ -107,8 +107,8 @@ pub struct Nodeinfo {
 pub struct Network {
     pub mac: MacAddress,
     pub addresses: Vec<Ipv6Addr>,
-    pub mesh: Value,            // TODO: implement
-    pub mesh_interfaces: Value, // TODO: implement
+    pub mesh: Value, // TODO: implement
+    pub mesh_interfaces: (),
 }
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
