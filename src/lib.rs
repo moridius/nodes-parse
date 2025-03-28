@@ -1,6 +1,5 @@
 use mac_address::MacAddress;
 use serde_derive::{Deserialize, Serialize};
-use serde_json::Value;
 use std::net::Ipv6Addr;
 
 #[derive(Deserialize, Serialize, Debug, Default, Clone)]
@@ -107,7 +106,7 @@ pub struct Nodeinfo {
 pub struct Network {
     pub mac: MacAddress,
     pub addresses: Vec<Ipv6Addr>,
-    pub mesh: Value, // TODO: implement
+    pub mesh: Option<Mesh>,
     pub mesh_interfaces: (),
 }
 
@@ -162,4 +161,21 @@ pub struct Wireguard {
 pub struct Hardware {
     pub nproc: u32,
     pub model: Option<String>,
+}
+
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct Mesh {
+    pub bat0: Option<Bat0>,
+}
+
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct Bat0 {
+    pub interfaces: Interfaces,
+}
+
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct Interfaces {
+    pub other: Option<Vec<MacAddress>>,
+    pub wireless: Option<Vec<MacAddress>>,
+    pub tunnel: Option<Vec<MacAddress>>,
 }
