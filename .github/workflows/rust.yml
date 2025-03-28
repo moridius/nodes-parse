@@ -24,4 +24,6 @@ jobs:
       run: cargo clippy
     - name: Run tests
       run: cargo test --verbose
+    - name: Run tests with chrono support
+      run: cargo test --features chrono --verbose
 
