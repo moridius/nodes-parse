@@ -38,8 +38,8 @@ pub struct Statistics {
     pub memory_usage: Option<f32>,
     pub uptime: f32,
     pub idletime: Option<f32>,
-    pub gateway: Option<String>,
-    pub gateway6: Option<String>,
+    pub gateway: Option<MacAddress>,
+    pub gateway6: Option<MacAddress>,
     pub processes: Processes,
     pub traffic: Traffic,
 }
