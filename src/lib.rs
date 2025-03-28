@@ -1,3 +1,5 @@
+#[cfg(feature = "chrono")]
+use chrono::{DateTime, FixedOffset};
 use mac_address::MacAddress;
 use serde_derive::{Deserialize, Serialize};
 use std::net::Ipv6Addr;
@@ -5,7 +7,10 @@ use std::net::Ipv6Addr;
 #[derive(Deserialize, Serialize, Debug, Default, Clone)]
 pub struct NodesJSON {
     pub version: u32,
+    #[cfg(not(feature = "chrono"))]
     pub timestamp: String,
+    #[cfg(feature = "chrono")]
+    pub timestamp: DateTime<FixedOffset>,
     pub nodes: Vec<Node>,
 }
 
@@ -178,4 +183,25 @@ pub struct Interfaces {
     pub other: Option<Vec<MacAddress>>,
     pub wireless: Option<Vec<MacAddress>>,
     pub tunnel: Option<Vec<MacAddress>>,
+}
+
+#[cfg(test)]
+mod tests {
+    #[cfg(feature = "chrono")]
+    use crate::NodesJSON;
+
+    #[test]
+    #[cfg(feature = "chrono")]
+    fn test_deserialize_event() {
+        let json_data = r#"{
+            "version": 1,
+            "timestamp": "2025-03-28T20:18:28+0100",
+            "nodes": []
+        }"#;
+        let nodes_json: NodesJSON = serde_json::from_str(json_data).expect("Failed to deserialize");
+        assert_eq!(
+            nodes_json.timestamp.to_string(),
+            "2025-03-28 20:18:28 +01:00"
+        );
+    }
 }
