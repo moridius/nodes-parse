@@ -99,7 +99,7 @@ pub struct Nodeinfo {
     pub hostname: String,
     pub location: Option<Location>,
     pub software: Software,
-    pub hardware: Value, // TODO: implement
+    pub hardware: Hardware,
     pub vpn: bool,
 }
 
@@ -156,4 +156,10 @@ pub struct Firmware {
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct Wireguard {
     pub version: String,
+}
+
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct Hardware {
+    pub nproc: u32,
+    pub model: Option<String>,
 }
