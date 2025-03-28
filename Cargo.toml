@@ -6,7 +6,7 @@ edition = "2021"
 description = "A few structs to parse the nodes.json of Freifunk Hannover."
 readme = "README.md"
 repository = "https://github.com/moridius/nodes-parse"
-keywords = ["freifunk", "gluon", "nodes.json"]
+keywords = ["freifunk", "gluon", "nodes", "json"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
